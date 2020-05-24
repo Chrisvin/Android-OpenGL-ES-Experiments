@@ -1,19 +1,14 @@
 package com.jem.openglexperiment.opengl.experiment1
 
 import android.content.Context
-import android.opengl.GLSurfaceView
 import android.util.AttributeSet
+import com.jem.openglexperiment.opengl.base.BaseGLSurfaceView
 
-class GLSurfaceView1 : GLSurfaceView {
+class GLSurfaceView1 : BaseGLSurfaceView {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    private val renderer: GLSurfaceViewRenderer1
-
-    init {
-        setEGLContextClientVersion(2)
-        renderer = GLSurfaceViewRenderer1()
-        setRenderer(renderer)
+    override fun getRendererInstance(): Renderer {
+        return GLSurfaceViewRenderer1()
     }
-
 }

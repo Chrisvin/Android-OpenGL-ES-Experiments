@@ -1,15 +1,14 @@
 package com.jem.openglexperiment.opengl.experiment1
 
+import android.opengl.GLSurfaceView
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jem.openglexperiment.opengl.base.BaseGLActivity
 
-class OpenGLActivity1 : AppCompatActivity() {
+class OpenGLActivity1 : BaseGLActivity() {
 
-    private lateinit var glSurfaceView: GLSurfaceView1
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        glSurfaceView = GLSurfaceView1(this)
-        setContentView(glSurfaceView)
+    override fun getGLSurfaceViewInstance(): GLSurfaceView {
+        return GLSurfaceView1(this)
     }
+
 }
