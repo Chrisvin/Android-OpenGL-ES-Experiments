@@ -1,10 +1,9 @@
 package com.jem.openglexperiment.opengl.experiment1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jem.openglexperiment.R
+import androidx.appcompat.app.AppCompatActivity
 
-class OpenGlActivity1 : AppCompatActivity() {
+class OpenGLActivity1 : AppCompatActivity() {
 
     private lateinit var glSurfaceView: GLSurfaceView1
 
