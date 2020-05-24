@@ -1,0 +1,2 @@
+rootProject.name='OpenGLExperiment'
+include ':app'
