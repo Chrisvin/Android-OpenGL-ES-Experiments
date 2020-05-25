@@ -1,4 +1,4 @@
-package com.jem.openglexperiment.opengl.experiment1
+package com.jem.openglexperiment.opengl.experiments.experiment1
 
 import android.content.Context
 import android.util.AttributeSet

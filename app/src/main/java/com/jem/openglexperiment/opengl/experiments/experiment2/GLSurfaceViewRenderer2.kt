@@ -1,4 +1,4 @@
-package com.jem.openglexperiment.opengl.experiment2
+package com.jem.openglexperiment.opengl.experiments.experiment2
 
 import android.opengl.GLES20
 import android.opengl.Matrix
