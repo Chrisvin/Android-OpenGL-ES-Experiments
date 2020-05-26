@@ -22,13 +22,14 @@ object ShaderHelper {
         }
     }
 
-    fun createProgram(vertexShader: Int, fragmentShader: Int): Int {
+    fun createProgram(vertexShader: Int? = null, fragmentShader: Int? = null): Int {
         return GLES20.glCreateProgram().also {
-            // add the vertex shader to program
-            GLES20.glAttachShader(it, vertexShader)
-            // add the fragment shader to program
-            GLES20.glAttachShader(it, fragmentShader)
-            // creates OpenGL ES program executables
+            vertexShader?.let { vShader ->
+                GLES20.glAttachShader(it, vShader)
+            }
+            fragmentShader?.let { fShader ->
+                GLES20.glAttachShader(it, fShader)
+            }
             GLES20.glLinkProgram(it)
         }
     }
