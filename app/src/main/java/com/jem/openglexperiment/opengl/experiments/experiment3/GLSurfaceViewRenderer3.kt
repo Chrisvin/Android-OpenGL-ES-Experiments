@@ -7,9 +7,11 @@ import com.jem.openglexperiment.opengl.shapes.FourTriangles
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 
-class GLSurfaceViewRenderer3: BaseGLSurfaceViewRenderer() {
+class GLSurfaceViewRenderer3 : BaseGLSurfaceViewRenderer() {
 
     private lateinit var triangle: FourTriangles
+    private val scaleMatrix = FloatArray(16)
+    private var scaleFactor = 1f
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         super.onSurfaceCreated(gl, config)
@@ -17,10 +19,12 @@ class GLSurfaceViewRenderer3: BaseGLSurfaceViewRenderer() {
     }
 
     override fun onDrawFrame(gl: GL10?) {
-//        super.onDrawFrame(gl)
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
-        Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, -5f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
-        Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
-        triangle.draw(vPMatrix)
+        super.onDrawFrame(gl)
+        Matrix.scaleM(scaleMatrix, 0, vPMatrix, 0, scaleFactor, scaleFactor, scaleFactor)
+        triangle.draw(scaleMatrix)
+    }
+
+    fun updateScaleFactor(scaleFactorDiff: Float) {
+        this.scaleFactor += scaleFactorDiff
     }
 }
