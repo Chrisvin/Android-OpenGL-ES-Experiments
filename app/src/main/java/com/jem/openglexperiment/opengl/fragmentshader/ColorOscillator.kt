@@ -16,7 +16,8 @@ class ColorOscillator(
                 "uniform vec4 vColor2;" +
                 "uniform float vOscillations;" +
                 "void main() {" +
-                "   gl_FragColor = mix(vColor1, vColor2, abs(sin(vTime * 0.002 * vOscillations)));" +
+                "   float x = vTime * 0.002 * vOscillations;" +
+                "   gl_FragColor = mix(vColor1, vColor2, ((cos(x * 3.1416) + 1.0) / 2.0));" +
                 "}"
     }
 
