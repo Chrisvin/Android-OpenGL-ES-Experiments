@@ -22,7 +22,8 @@ abstract class BaseFragmentShader {
     private val vertexArray = floatArrayOf(
         -1f, 1f, 0f,
         -1f, -1f, 0f,
-        1f, -1f, 0f
+        1f, -1f, 0f,
+        1f, 1f, 0f
     )
     private val vertexBuffer by lazy {
         FloatBufferHelper.allocateDirectBuffer(
@@ -72,7 +73,7 @@ abstract class BaseFragmentShader {
 
         handleFragmentAttributes()
 
-        GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexArray.size / COORDS_PER_VERTEX)
+        GLES20.glDrawArrays(GLES20.GL_TRIANGLE_FAN, 0, vertexArray.size / COORDS_PER_VERTEX)
         GLES20.glDisableVertexAttribArray(positionHandle)
     }
 
