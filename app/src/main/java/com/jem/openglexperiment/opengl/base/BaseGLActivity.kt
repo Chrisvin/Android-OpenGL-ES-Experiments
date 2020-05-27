@@ -15,5 +15,15 @@ abstract class BaseGLActivity : AppCompatActivity() {
         setContentView(glSurfaceView)
     }
 
+    override fun onResume() {
+        super.onResume()
+        glSurfaceView.onResume()
+    }
+
+    override fun onPause() {
+        glSurfaceView.onPause()
+        super.onPause()
+    }
+
     abstract fun getGLSurfaceViewInstance(): GLSurfaceView
 }
