@@ -19,7 +19,8 @@
         <activity android:name=".opengl.experiments.experiment1.GLActivity1"/>
         <activity android:name=".opengl.experiments.experiment2.GLActivity2"/>
         <activity android:name=".opengl.experiments.experiment3.GLActivity3"/>
-        <activity android:name=".opengl.experiments.experiment4.GLActivity4">
+        <activity android:name=".opengl.experiments.experiment4.GLActivity4" />
+        <activity android:name=".opengl.experiments.experiment5.GLActivity5">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
