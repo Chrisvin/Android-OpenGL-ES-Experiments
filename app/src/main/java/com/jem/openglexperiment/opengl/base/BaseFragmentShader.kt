@@ -12,12 +12,16 @@ abstract class BaseFragmentShader {
         protected const val BYTES_PER_VERTEX = 4
         protected const val VERTEX_STRIDE = COORDS_PER_VERTEX * BYTES_PER_VERTEX
 
-        protected const val COMMON_SHADER_PARAMS = "uniform float vTime;"
+        protected const val COMMON_SHADER_PARAMS = "" +
+                "uniform vec2 vResolution;" +
+                "uniform float vTime;"
     }
 
     protected var program: Int = 0
 
     private var positionHandle = 0
+
+    private var screenWidth: FloatArray? = null
 
     private val vertexArray = floatArrayOf(
         -1f, 1f, 0f,
@@ -34,7 +38,6 @@ abstract class BaseFragmentShader {
 
     private val vertexShaderCode: String = "" +
             "attribute vec4 vPosition;" +
-            COMMON_SHADER_PARAMS +
             "void main() {" +
             "   gl_Position = vPosition;" +
             "}"
@@ -53,9 +56,18 @@ abstract class BaseFragmentShader {
     abstract fun getFragmentShaderCode(): String
     abstract fun handleFragmentAttributes()
 
+    fun setResolution(width: Float, height: Float) {
+        screenWidth = floatArrayOf(width, height)
+    }
+
     fun draw() {
         GLES20.glUseProgram(program)
 
+        screenWidth?.let { vResolution ->
+            GLES20.glGetUniformLocation(program, "vResolution").also {
+                GLES20.glUniform2fv(it, 1, vResolution, 0)
+            }
+        }
         GLES20.glGetUniformLocation(program, "vTime").also {
             GLES20.glUniform1f(it, (SystemClock.uptimeMillis() - startTime).toFloat())
         }
