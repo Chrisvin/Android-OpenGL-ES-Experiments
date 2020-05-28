@@ -3,7 +3,6 @@ package com.jem.openglexperiment.opengl.experiments.experiment1
 import android.opengl.Matrix
 import android.os.SystemClock
 import com.jem.openglexperiment.opengl.base.BaseGLSurfaceViewRenderer
-import com.jem.openglexperiment.opengl.shapes.Square
 import com.jem.openglexperiment.opengl.shapes.Triangle
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10

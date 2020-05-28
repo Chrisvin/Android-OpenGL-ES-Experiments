@@ -1,7 +1,6 @@
 package com.jem.openglexperiment.opengl.fragmentshader
 
 import android.opengl.GLES20
-import android.os.SystemClock
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class ColorOscillator(
