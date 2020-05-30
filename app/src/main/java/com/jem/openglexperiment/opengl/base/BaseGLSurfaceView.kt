@@ -15,6 +15,7 @@ abstract class BaseGLSurfaceView : GLSurfaceView {
 
     init {
         this.setEGLContextClientVersion(2)
+        this.debugFlags = DEBUG_CHECK_GL_ERROR or DEBUG_LOG_GL_CALLS
         this.setRenderer(glRenderer)
     }
 
