@@ -16,7 +16,7 @@ class GLSurfaceViewRenderer6 : BaseGLSurfaceViewRenderer() {
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
         super.onSurfaceChanged(gl, width, height)
-        pulse.setResolution(width.toFloat(), height.toFloat())
+        pulse.setResolution(width, height)
     }
 
     override fun onDrawFrame(gl: GL10?) {

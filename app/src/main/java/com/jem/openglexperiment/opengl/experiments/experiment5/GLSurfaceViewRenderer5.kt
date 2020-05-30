@@ -7,20 +7,20 @@ import javax.microedition.khronos.opengles.GL10
 
 class GLSurfaceViewRenderer5 : BaseGLSurfaceViewRenderer() {
 
-    private lateinit var pulse: LineSweeper
+    private lateinit var lineSweeper: LineSweeper
 
     override fun onSurfaceCreated(gl: GL10?, config: EGLConfig?) {
         super.onSurfaceCreated(gl, config)
-        pulse = LineSweeper()
+        lineSweeper = LineSweeper()
     }
 
     override fun onSurfaceChanged(gl: GL10?, width: Int, height: Int) {
         super.onSurfaceChanged(gl, width, height)
-        pulse.setResolution(width.toFloat(), height.toFloat())
+        lineSweeper.setResolution(width, height)
     }
 
     override fun onDrawFrame(gl: GL10?) {
         super.onDrawFrame(gl)
-        pulse.draw()
+        lineSweeper.draw()
     }
 }

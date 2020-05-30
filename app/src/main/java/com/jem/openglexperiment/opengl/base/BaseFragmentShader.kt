@@ -58,6 +58,10 @@ abstract class BaseFragmentShader {
     abstract fun getFragmentShaderCode(): String
     abstract fun handleFragmentAttributes()
 
+    fun setResolution(width: Int, height: Int) {
+        this.setResolution(width.toFloat(), height.toFloat())
+    }
+
     fun setResolution(width: Float, height: Float) {
         screenWidth = floatArrayOf(width, height)
     }
