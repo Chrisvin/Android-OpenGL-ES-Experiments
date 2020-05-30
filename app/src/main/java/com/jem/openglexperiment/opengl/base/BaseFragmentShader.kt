@@ -12,6 +12,8 @@ abstract class BaseFragmentShader {
         protected const val BYTES_PER_VERTEX = 4
         protected const val VERTEX_STRIDE = COORDS_PER_VERTEX * BYTES_PER_VERTEX
 
+        private const val TIME_MOD_LIMIT = 2 * Math.PI * 1000
+
         protected const val COMMON_SHADER_PARAMS = "" +
                 "uniform vec2 vResolution;" +
                 "uniform float vTime;"
@@ -69,7 +71,10 @@ abstract class BaseFragmentShader {
             }
         }
         GLES20.glGetUniformLocation(program, "vTime").also {
-            GLES20.glUniform1f(it, (SystemClock.uptimeMillis() - startTime).toFloat())
+            GLES20.glUniform1f(
+                it,
+                ((SystemClock.uptimeMillis() - startTime) % TIME_MOD_LIMIT).toFloat()
+            )
         }
         positionHandle = GLES20.glGetAttribLocation(program, "vPosition").also {
             GLES20.glEnableVertexAttribArray(it)
