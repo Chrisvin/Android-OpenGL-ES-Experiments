@@ -15,19 +15,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".opengl.experiments.experiment1.GLActivity1" />
-        <activity android:name=".opengl.experiments.experiment2.GLActivity2" />
-        <activity android:name=".opengl.experiments.experiment3.GLActivity3" />
-        <activity android:name=".opengl.experiments.experiment4.GLActivity4" />
-        <activity android:name=".opengl.experiments.experiment5.GLActivity5" />
-        <activity android:name=".opengl.experiments.experiment6.GLActivity6">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".opengl.experiments.experiment1.GLActivity1" />
+        <activity android:name=".opengl.experiments.experiment2.GLActivity2" />
+        <activity android:name=".opengl.experiments.experiment3.GLActivity3" />
+        <activity android:name=".opengl.experiments.experiment4.GLActivity4" />
+        <activity android:name=".opengl.experiments.experiment5.GLActivity5" />
+        <activity android:name=".opengl.experiments.experiment6.GLActivity6" />
+        <activity android:name=".opengl.experiments.experiment7.GLActivity7" />
     </application>
 
 </manifest>
