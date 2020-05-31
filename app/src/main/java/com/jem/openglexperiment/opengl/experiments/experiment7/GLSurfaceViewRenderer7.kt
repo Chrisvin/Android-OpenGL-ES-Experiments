@@ -24,9 +24,15 @@ class GLSurfaceViewRenderer7 : BaseGLSurfaceViewRenderer() {
         pulse.draw()
     }
 
-    fun updateTouchLocation(x: Float, y: Float) {
+    fun addTouchLocation(x: Float, y: Float) {
         if (::pulse.isInitialized) {
-            pulse.updateTouchLocation(x, y)
+            pulse.addTouchLocation(x, y)
+        }
+    }
+
+    fun undoTouchLocation() {
+        if (::pulse.isInitialized) {
+            pulse.undoTouchLocation()
         }
     }
 }
