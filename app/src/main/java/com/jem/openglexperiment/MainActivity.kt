@@ -13,6 +13,7 @@ import com.jem.openglexperiment.opengl.experiments.experiment4.GLActivity4
 import com.jem.openglexperiment.opengl.experiments.experiment5.GLActivity5
 import com.jem.openglexperiment.opengl.experiments.experiment6.GLActivity6
 import com.jem.openglexperiment.opengl.experiments.experiment7.GLActivity7
+import com.jem.openglexperiment.opengl.experiments.experiment8.GLActivity8
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +29,8 @@ class MainActivity : AppCompatActivity() {
             GLActivity4::class.java,
             GLActivity5::class.java,
             GLActivity6::class.java,
-            GLActivity7::class.java
+            GLActivity7::class.java,
+            GLActivity8::class.java
         )
     }
 
