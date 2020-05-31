@@ -12,7 +12,7 @@ class LineSweeper : BaseFragmentShader() {
                 "}" +
                 "" +
                 "void main() {" +
-                "   float theta = vTime * 0.002;" +
+                "   float theta = vTime * 2.0;" +
                 "   vec2 coords = gl_FragCoord.xy / vResolution.xy;" +
                 "   vec3 color = mix(" +
                 "       vec3(0.509,0.470,0.755)," +

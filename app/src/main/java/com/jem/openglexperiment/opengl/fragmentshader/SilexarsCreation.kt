@@ -8,7 +8,7 @@ class SilexarsCreation : BaseFragmentShader() {
         // Credits: Danilo Guanabara
         return "void main() {" +
                 "   vec3 c;" +
-                "   float l, z= 0.001 * vTime;" +
+                "   float l, z= vTime;" +
                 "   vec2 p=gl_FragCoord.xy/vResolution.xy;" +
                 "   for(int i=0;i<3;i++) {" +
                 "       vec2 uv=p;" +

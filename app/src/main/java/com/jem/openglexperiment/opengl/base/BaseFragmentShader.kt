@@ -82,7 +82,7 @@ abstract class BaseFragmentShader {
         GLES20.glGetUniformLocation(program, "vTime").also {
             GLES20.glUniform1f(
                 it,
-                ((SystemClock.uptimeMillis() - startTime) % TIME_MOD_LIMIT).toFloat()
+                ((SystemClock.uptimeMillis() - startTime) % TIME_MOD_LIMIT).toFloat() / 1000.0f
             )
         }
         positionHandle = GLES20.glGetAttribLocation(program, "vPosition").also {
