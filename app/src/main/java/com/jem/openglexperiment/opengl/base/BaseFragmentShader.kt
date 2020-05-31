@@ -48,9 +48,14 @@ abstract class BaseFragmentShader {
 
     init {
         val vertexShaderHandle = ShaderHelper.loadVertexShader(vertexShaderCode)
+        val shaderCode = this.getFragmentShaderCode()
+        val hasSomeAttribute = shaderCode.indexOf(";") < shaderCode.indexOf("void main()")
         val fragmentShaderCode =
-            this.getFragmentShaderCode()
-                .replace("void main()", COMMON_SHADER_PARAMS + "void main()")
+            if (hasSomeAttribute) {
+                shaderCode.replaceFirst(";", ";$COMMON_SHADER_PARAMS")
+            } else {
+                shaderCode.replaceFirst("void main()", "${COMMON_SHADER_PARAMS}void main()")
+            }
         val fragmentShaderHandle = ShaderHelper.loadFragmentShader(fragmentShaderCode)
         program = ShaderHelper.createProgram(vertexShaderHandle, fragmentShaderHandle)
     }
