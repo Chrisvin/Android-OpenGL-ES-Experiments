@@ -7,4 +7,8 @@ class GLActivity7 : BaseGLActivity() {
     override fun getGLSurfaceViewInstance(): GLSurfaceView {
         return GLSurfaceView7(this)
     }
+
+    override fun getSnackbarMessage(): String? {
+        return "Touch to place pulses."
+    }
 }
