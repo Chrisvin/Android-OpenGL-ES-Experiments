@@ -12,6 +12,7 @@ class SmoothPulse : BaseFragmentShader() {
     private val touchLocationTimes: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS)
 
     override fun getFragmentShaderCode(): String {
+        // Reference Source for circle impl: https://www.shadertoy.com/view/ldtyRn
         return "precision mediump float;" +
 
                 "const int MAX_TOUCH_LOCATIONS = 100;" +
