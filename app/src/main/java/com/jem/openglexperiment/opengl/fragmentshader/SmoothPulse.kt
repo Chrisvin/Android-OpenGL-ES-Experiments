@@ -1,12 +1,15 @@
 package com.jem.openglexperiment.opengl.fragmentshader
 
 import android.opengl.GLES20
+import android.os.SystemClock
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class SmoothPulse : BaseFragmentShader() {
 
     private var touchLocationCount: Int = 0
     private val touchLocations: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS * 2)
+    private val touchLocationStartTimes: LongArray = LongArray(MAX_TOUCH_LOCATIONS)
+    private val touchLocationTimes: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS)
 
     override fun getFragmentShaderCode(): String {
         return "precision mediump float;" +
@@ -15,14 +18,13 @@ class SmoothPulse : BaseFragmentShader() {
 
                 "uniform int locationCount;" +
                 "uniform vec2 locations[MAX_TOUCH_LOCATIONS];" +
+                "uniform float locationTimes[MAX_TOUCH_LOCATIONS];" +
 
                 "float upWave(float dx) {" +
                 "   return (dx - floor(dx));" +
                 "}" +
 
-                "float circle(vec2 circleCenter, float startRadius, float rangeSize) {" +
-                // calculate ease value using time
-                "   float ease = upWave(vTime * 0.75);" +
+                "float circle(vec2 circleCenter, float startRadius, float rangeSize, float ease) {" +
                 // adjust the radius based on radius & ease values
                 "   float radius = startRadius + ease * rangeSize;" +
                 // adjust circleCenter for aspect ratio
@@ -43,7 +45,8 @@ class SmoothPulse : BaseFragmentShader() {
                 "   return mix(0.0, 1.0, circ * opacity);" +
                 "}" +
 
-                "vec3 getCircle(vec3 color, vec2 circleLocation, float startRadius, float rangeSize) {" +
+                "vec3 getCircle(vec3 color, int index, float startRadius, float rangeSize) {" +
+                "   vec2 circleLocation = locations[index] / vResolution;" +
                 "   vec2 uv = gl_FragCoord.xy / vResolution.xy;" +
                 // place the circle relative to the provided location (place in center before any touches are registered).
                 "   vec2 circleCenter;" +
@@ -52,7 +55,13 @@ class SmoothPulse : BaseFragmentShader() {
                 "   } else {" +
                 "       circleCenter = vec2(uv - vec2(circleLocation.x, 1.0 - circleLocation.y));" +
                 "   }" +
-                "   float circle = circle(circleCenter, startRadius, rangeSize) * 0.85;" +
+
+                // calculate ease value using time
+                "   float ease = upWave(locationTimes[index] * 0.75);" +
+                // uncomment the following line to synchronize the pulses
+//                "   ease = upWave(vTime * 0.75);" +
+
+                "   float circle = circle(circleCenter, startRadius, rangeSize, ease) * 0.85;" +
                 "   return mix(color, vec3(0.0, .64, .91), circle);" +
                 "}" +
 
@@ -62,7 +71,7 @@ class SmoothPulse : BaseFragmentShader() {
                 "       if (i >= locationCount) {" +
                 "           break;" +
                 "       }" +
-                "       color = getCircle(color, locations[i] / vResolution, 50.0, 150.0);" +
+                "       color = getCircle(color, i, 50.0, 150.0);" +
                 "   }" +
                 "   gl_FragColor = vec4(color, 1.0);" +
                 "}"
@@ -75,11 +84,20 @@ class SmoothPulse : BaseFragmentShader() {
         GLES20.glGetUniformLocation(program, "locations").also {
             GLES20.glUniform2fv(it, touchLocationCount, touchLocations, 0)
         }
+        val currentTime = SystemClock.uptimeMillis()
+        for (i in 0..touchLocationCount) {
+            touchLocationTimes[i] =
+                ((currentTime - touchLocationStartTimes[i]) % TIME_MOD_LIMIT).toFloat() / 1000.0f
+        }
+        GLES20.glGetUniformLocation(program, "locationTimes").also {
+            GLES20.glUniform1fv(it, touchLocationCount, touchLocationTimes, 0)
+        }
     }
 
     fun addTouchLocation(x: Float, y: Float) {
         touchLocations[touchLocationCount * 2] = x
         touchLocations[(touchLocationCount * 2) + 1] = y
+        touchLocationStartTimes[touchLocationCount] = SystemClock.uptimeMillis()
         touchLocationCount++
     }
 
@@ -87,9 +105,12 @@ class SmoothPulse : BaseFragmentShader() {
         touchLocationCount--
         touchLocations[touchLocationCount * 2] = 0f
         touchLocations[(touchLocationCount * 2) + 1] = 0f
+        touchLocationStartTimes[touchLocationCount] = 0L
     }
 
     companion object {
         private const val MAX_TOUCH_LOCATIONS = 100
+
+        private const val TIME_MOD_LIMIT = 2 * Math.PI * 1000
     }
 }
