@@ -9,6 +9,6 @@ class GLActivity7 : BaseGLActivity() {
     }
 
     override fun getSnackbarMessage(): String? {
-        return "Touch to place pulses."
+        return "Tap to place pulses."
     }
 }
