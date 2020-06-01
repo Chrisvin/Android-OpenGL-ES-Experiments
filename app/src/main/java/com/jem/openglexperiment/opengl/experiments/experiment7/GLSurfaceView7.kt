@@ -10,7 +10,7 @@ class GLSurfaceView7 : BaseGLSurfaceView {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
-    val singleTapDetector: GestureDetector =
+    private val singleTapDetector: GestureDetector =
         GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
             override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                 e?.let {
@@ -29,7 +29,7 @@ class GLSurfaceView7 : BaseGLSurfaceView {
         return true
     }
 
-    fun undoTouchLocation() {
+    private fun undoTouchLocation() {
         (glRenderer as? GLSurfaceViewRenderer7?)?.undoTouchLocation()
     }
 }
