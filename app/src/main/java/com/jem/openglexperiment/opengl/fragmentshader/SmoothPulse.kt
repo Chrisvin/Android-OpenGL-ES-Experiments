@@ -3,6 +3,7 @@ package com.jem.openglexperiment.opengl.fragmentshader
 import android.opengl.GLES20
 import android.os.SystemClock
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
+import java.util.*
 
 class SmoothPulse : BaseFragmentShader() {
 
@@ -10,6 +11,9 @@ class SmoothPulse : BaseFragmentShader() {
     private val touchLocations: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS * 2)
     private val touchLocationStartTimes: LongArray = LongArray(MAX_TOUCH_LOCATIONS)
     private val touchLocationTimes: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS)
+    private val touchLocationColors: FloatArray = FloatArray(MAX_TOUCH_LOCATIONS * 3)
+
+    private val colorRandom: Random = Random()
 
     override fun getFragmentShaderCode(): String {
         // Reference Source for circle impl: https://www.shadertoy.com/view/ldtyRn
@@ -20,6 +24,7 @@ class SmoothPulse : BaseFragmentShader() {
                 "uniform int locationCount;" +
                 "uniform vec2 locations[MAX_TOUCH_LOCATIONS];" +
                 "uniform float locationTimes[MAX_TOUCH_LOCATIONS];" +
+                "uniform vec3 locationColors[MAX_TOUCH_LOCATIONS];" +
 
                 "float upWave(float dx) {" +
                 "   return (dx - floor(dx));" +
@@ -63,7 +68,7 @@ class SmoothPulse : BaseFragmentShader() {
 //                "   ease = upWave(vTime * 0.75);" +
 
                 "   float circle = circle(circleCenter, startRadius, rangeSize, ease) * 0.85;" +
-                "   return mix(color, vec3(0.0, .64, .91), circle);" +
+                "   return mix(color, locationColors[index], circle);" +
                 "}" +
 
                 "void main() {" +
@@ -93,6 +98,20 @@ class SmoothPulse : BaseFragmentShader() {
         GLES20.glGetUniformLocation(program, "locationTimes").also {
             GLES20.glUniform1fv(it, touchLocationCount, touchLocationTimes, 0)
         }
+        GLES20.glGetUniformLocation(program, "locationColors").also {
+            GLES20.glUniform3fv(it, touchLocationCount, touchLocationColors, 0)
+        }
+    }
+
+    private fun setColors(index: Int, reset: Boolean = false) {
+        for (i in index..index + 2) {
+            touchLocationColors[i] =
+                if (reset) {
+                    0f
+                } else {
+                    colorRandom.nextFloat()
+                }
+        }
     }
 
     fun addTouchLocation(x: Float, y: Float) {
@@ -102,6 +121,7 @@ class SmoothPulse : BaseFragmentShader() {
         touchLocations[touchLocationCount * 2] = x
         touchLocations[(touchLocationCount * 2) + 1] = y
         touchLocationStartTimes[touchLocationCount] = SystemClock.uptimeMillis()
+        setColors(touchLocationCount * 3)
         touchLocationCount++
     }
 
@@ -113,6 +133,7 @@ class SmoothPulse : BaseFragmentShader() {
         touchLocations[touchLocationCount * 2] = 0f
         touchLocations[(touchLocationCount * 2) + 1] = 0f
         touchLocationStartTimes[touchLocationCount] = 0L
+        setColors(touchLocationCount * 3, reset = true)
     }
 
     companion object {
