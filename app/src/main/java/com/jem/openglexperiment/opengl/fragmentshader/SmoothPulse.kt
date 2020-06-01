@@ -95,6 +95,9 @@ class SmoothPulse : BaseFragmentShader() {
     }
 
     fun addTouchLocation(x: Float, y: Float) {
+        if (touchLocationCount == MAX_TOUCH_LOCATIONS) {
+            return
+        }
         touchLocations[touchLocationCount * 2] = x
         touchLocations[(touchLocationCount * 2) + 1] = y
         touchLocationStartTimes[touchLocationCount] = SystemClock.uptimeMillis()
@@ -102,6 +105,9 @@ class SmoothPulse : BaseFragmentShader() {
     }
 
     fun undoTouchLocation() {
+        if (touchLocationCount == 0) {
+            return
+        }
         touchLocationCount--
         touchLocations[touchLocationCount * 2] = 0f
         touchLocations[(touchLocationCount * 2) + 1] = 0f
