@@ -1,11 +1,10 @@
 package com.jem.openglexperiment.opengl.shapes
 
 import android.opengl.GLES20
-import com.jem.openglexperiment.opengl.helper.FloatBufferHelper.allocateDirectBuffer
+import com.jem.openglexperiment.opengl.helper.ByteBufferHelper.allocateDirectFloatBuffer
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.createProgram
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.loadFragmentShader
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.loadVertexShader
-import java.nio.FloatBuffer
 
 class RightAngleTriangle {
 
@@ -39,7 +38,7 @@ class RightAngleTriangle {
                 "}"
 
     private var vertexColorBuffer =
-        allocateDirectBuffer(triangleColorCoords.size * 4, triangleColorCoords)
+        allocateDirectFloatBuffer(triangleColorCoords)
 
     private var mProgram: Int
 

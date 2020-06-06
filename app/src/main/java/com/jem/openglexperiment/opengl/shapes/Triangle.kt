@@ -1,7 +1,7 @@
 package com.jem.openglexperiment.opengl.shapes
 
 import android.opengl.GLES20
-import com.jem.openglexperiment.opengl.helper.FloatBufferHelper.allocateDirectBuffer
+import com.jem.openglexperiment.opengl.helper.ByteBufferHelper.allocateDirectFloatBuffer
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.createProgram
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.loadFragmentShader
 import com.jem.openglexperiment.opengl.helper.ShaderHelper.loadVertexShader
@@ -41,7 +41,7 @@ class Triangle {
                 "}"
 
     private var vertexBuffer: FloatBuffer =
-        allocateDirectBuffer(triangleCoords.size * 4, triangleCoords)
+        allocateDirectFloatBuffer(triangleCoords)
 
     private var mProgram: Int
 

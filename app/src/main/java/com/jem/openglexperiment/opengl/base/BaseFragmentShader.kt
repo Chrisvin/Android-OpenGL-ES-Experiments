@@ -2,7 +2,7 @@ package com.jem.openglexperiment.opengl.base
 
 import android.opengl.GLES20
 import android.os.SystemClock
-import com.jem.openglexperiment.opengl.helper.FloatBufferHelper
+import com.jem.openglexperiment.opengl.helper.ByteBufferHelper
 import com.jem.openglexperiment.opengl.helper.ShaderHelper
 
 abstract class BaseFragmentShader {
@@ -32,10 +32,7 @@ abstract class BaseFragmentShader {
         1f, 1f, 0f
     )
     private val vertexBuffer by lazy {
-        FloatBufferHelper.allocateDirectBuffer(
-            this.vertexArray.size * BYTES_PER_VERTEX,
-            this.vertexArray
-        )
+        ByteBufferHelper.allocateDirectFloatBuffer(this.vertexArray)
     }
 
     private val vertexShaderCode: String = "" +

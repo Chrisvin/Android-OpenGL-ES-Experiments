@@ -1,7 +1,7 @@
 package com.jem.openglexperiment.opengl.shapes
 
 import android.opengl.GLES20
-import com.jem.openglexperiment.opengl.helper.FloatBufferHelper
+import com.jem.openglexperiment.opengl.helper.ByteBufferHelper
 import com.jem.openglexperiment.opengl.helper.ShaderHelper
 
 class FourTriangles {
@@ -23,7 +23,7 @@ class FourTriangles {
         -0.75f, -0.6f, 0f
     )
     private val vertexBuffer =
-        FloatBufferHelper.allocateDirectBuffer(vertexCoords.size * 4, vertexCoords)
+        ByteBufferHelper.allocateDirectFloatBuffer(vertexCoords)
 
     private val colors = floatArrayOf(
         1f, 0f, 0f, 1f,
@@ -39,7 +39,7 @@ class FourTriangles {
         0f, 0.58f, 0.48f, 1f,
         0.24f, 0.45f, 1f, 1f
     )
-    private val colorBuffer = FloatBufferHelper.allocateDirectBuffer(colors.size * 4, colors)
+    private val colorBuffer = ByteBufferHelper.allocateDirectFloatBuffer(colors)
 
     private val vertexCount: Int = vertexCoords.size / COORDS_PER_VERTEX
     private val vertexStride: Int = COORDS_PER_VERTEX * 4 // 4 bytes per vertex
