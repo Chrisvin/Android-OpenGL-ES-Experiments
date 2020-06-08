@@ -2,6 +2,7 @@ package com.jem.openglexperiment.opengl.experiments.experiment9
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import com.jem.openglexperiment.opengl.base.BaseGLSurfaceView
 
@@ -21,5 +22,9 @@ class GLSurfaceView9 : BaseGLSurfaceView {
 
     override fun getRendererInstance(): Renderer {
         return GLSurfaceViewRenderer9()
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        return scaleGestureDetector.onTouchEvent(event)
     }
 }

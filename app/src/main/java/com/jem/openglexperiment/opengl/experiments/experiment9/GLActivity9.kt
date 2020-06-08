@@ -7,4 +7,8 @@ class GLActivity9 : BaseGLActivity() {
     override fun getGLSurfaceViewInstance(): GLSurfaceView {
         return GLSurfaceView9(this)
     }
+
+    override fun getSnackbarMessage(): String? {
+        return "Pinch to change middle pattern."
+    }
 }

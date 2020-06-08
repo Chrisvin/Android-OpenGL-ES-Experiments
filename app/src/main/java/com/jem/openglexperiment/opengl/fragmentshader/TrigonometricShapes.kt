@@ -23,7 +23,7 @@ class TrigonometricShapes : BaseFragmentShader() {
                 "   float f = smoothstep(-0.5, -0.0, cos(a*10. + vTime * 8.0))*0.2+0.5;" +
                 "   color = max(color, mix(color, vec3(0.,0., 1.-smoothstep(f,f+0.4,r)), .75));" +
 
-                "   f = abs(cos(a*12. - vTime * 5.0)*sin(a*3. - vTime * 4.))*0.5+.31;" +
+                "   f = abs(cos(a*floor(innerTrigFactor) - vTime * 5.0)*sin(a*3. - vTime * 4.))*0.5+.31;" +
                 "   color = max(color, mix(color, vec3(1.-smoothstep(f,f+0.2,r / 0.65)), 0.5));" +
 
                 "   f = ceil(sin(a*3. - vTime * 2.0)*sin(a*1.0 + vTime * 4.0))*0.5+.4;" +
