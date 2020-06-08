@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.jem.openglexperiment.opengl.base.BaseGLActivity
 import com.jem.openglexperiment.opengl.experiments.experiment1.GLActivity1
+import com.jem.openglexperiment.opengl.experiments.experiment10.GLActivity10
 import com.jem.openglexperiment.opengl.experiments.experiment2.GLActivity2
 import com.jem.openglexperiment.opengl.experiments.experiment3.GLActivity3
 import com.jem.openglexperiment.opengl.experiments.experiment4.GLActivity4
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             GLActivity3::class.java, GLActivity4::class.java,
             GLActivity5::class.java, GLActivity6::class.java,
             GLActivity7::class.java, GLActivity8::class.java,
-            GLActivity9::class.java
+            GLActivity9::class.java, GLActivity10::class.java
         )
     }
 

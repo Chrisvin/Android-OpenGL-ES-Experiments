@@ -31,6 +31,7 @@
         <activity android:name=".opengl.experiments.experiment7.GLActivity7" />
         <activity android:name=".opengl.experiments.experiment8.GLActivity8" />
         <activity android:name=".opengl.experiments.experiment9.GLActivity9" />
+        <activity android:name=".opengl.experiments.experiment10.GLActivity10" />
     </application>
 
 </manifest>
