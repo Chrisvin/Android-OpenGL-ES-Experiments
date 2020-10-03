@@ -1,26 +1,12 @@
 package com.jem.openglexperiment.opengl.fragmentshader
 
+import android.content.res.Resources
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
-class SilexarsCreation : BaseFragmentShader() {
-    override fun getFragmentShaderCode(): String {
-        // Reference Source: https://www.shadertoy.com/view/XsXXDn
-        // Credits: Danilo Guanabara
-        return "void main() {" +
-                "   vec3 c;" +
-                "   float l, z= vTime;" +
-                "   vec2 p=gl_FragCoord.xy/vResolution.xy;" +
-                "   for(int i=0;i<3;i++) {" +
-                "       vec2 uv=p;" +
-                "       p-=.5;" +
-                "       z+=0.07;" +
-                "       l=length(p);" +
-                "       uv+=p/l*(sin(z)+1.0)*abs(sin(l  *9.0 - z*2.0));" +
-                "       p+=.5;" +
-                "       c[i]= 0.01 / length(abs(fract(uv) - 0.5));" +
-                "   }" +
-                "   gl_FragColor = vec4(c/l, 1.0);" +
-                "}"
+class SilexarsCreation(val resources: Resources) : BaseFragmentShader(resources) {
+
+    override fun getFragmentShaderFileName(): String {
+        return "silexars_creation.glsl"
     }
 
     override fun handleFragmentAttributes() {
