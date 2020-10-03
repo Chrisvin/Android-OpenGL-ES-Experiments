@@ -3,7 +3,6 @@ package com.jem.openglexperiment.opengl.fragmentshader
 import android.content.res.Resources
 import android.opengl.GLES20
 import com.jem.openglexperiment.getStringFromAsset
-import com.jem.openglexperiment.getStringFromRawResource
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class ColorOscillator(

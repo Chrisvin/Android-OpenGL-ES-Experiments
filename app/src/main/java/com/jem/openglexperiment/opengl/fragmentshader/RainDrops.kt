@@ -4,7 +4,6 @@ import android.content.res.Resources
 import android.opengl.GLES20
 import android.os.SystemClock
 import com.jem.openglexperiment.getStringFromAsset
-import com.jem.openglexperiment.getStringFromRawResource
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class RainDrops(val resources: Resources) : BaseFragmentShader(resources) {
