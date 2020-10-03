@@ -21,7 +21,6 @@ float Saw(float b, float t) {
     return smoothstep(0., b, t)*smoothstep(1., b, t);
 }
 
-
 vec2 DropLayer2(vec2 uv, float t) {
     vec2 UV = uv;
     uv.y += t*0.75;
