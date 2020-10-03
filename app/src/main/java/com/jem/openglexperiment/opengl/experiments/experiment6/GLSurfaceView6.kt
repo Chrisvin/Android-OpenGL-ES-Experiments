@@ -9,6 +9,6 @@ class GLSurfaceView6 : BaseGLSurfaceView {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
     override fun getRendererInstance(): Renderer {
-        return GLSurfaceViewRenderer6()
+        return GLSurfaceViewRenderer6(resources)
     }
 }

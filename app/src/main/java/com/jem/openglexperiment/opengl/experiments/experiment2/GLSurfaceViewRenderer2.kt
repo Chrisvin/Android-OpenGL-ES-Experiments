@@ -1,6 +1,5 @@
 package com.jem.openglexperiment.opengl.experiments.experiment2
 
-import android.opengl.GLES20
 import android.opengl.Matrix
 import com.jem.openglexperiment.opengl.base.BaseGLSurfaceViewRenderer
 import com.jem.openglexperiment.opengl.shapes.RightAngleTriangle

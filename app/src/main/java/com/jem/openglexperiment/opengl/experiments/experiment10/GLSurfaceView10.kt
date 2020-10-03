@@ -10,7 +10,7 @@ class GLSurfaceView10 : BaseGLSurfaceView {
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
 
     override fun getRendererInstance(): Renderer {
-        return GLSurfaceViewRenderer10()
+        return GLSurfaceViewRenderer10(resources)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {

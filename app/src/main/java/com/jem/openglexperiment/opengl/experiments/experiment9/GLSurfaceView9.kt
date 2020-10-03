@@ -21,7 +21,7 @@ class GLSurfaceView9 : BaseGLSurfaceView {
         })
 
     override fun getRendererInstance(): Renderer {
-        return GLSurfaceViewRenderer9()
+        return GLSurfaceViewRenderer9(resources)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
