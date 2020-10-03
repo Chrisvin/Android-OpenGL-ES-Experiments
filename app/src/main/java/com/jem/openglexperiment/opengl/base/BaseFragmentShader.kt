@@ -3,6 +3,7 @@ package com.jem.openglexperiment.opengl.base
 import android.content.res.Resources
 import android.opengl.GLES20
 import android.os.SystemClock
+import com.jem.openglexperiment.extension.getStringFromAsset
 import com.jem.openglexperiment.opengl.helper.ByteBufferHelper
 import com.jem.openglexperiment.opengl.helper.ShaderHelper
 
@@ -46,7 +47,7 @@ abstract class BaseFragmentShader(private val resources: Resources) {
 
     init {
         val vertexShaderHandle = ShaderHelper.loadVertexShader(vertexShaderCode)
-        val shaderCode = this.getFragmentShaderCode(resources)
+        val shaderCode = resources.getStringFromAsset("fragment_shaders/${this.getFragmentShaderFileName()}")
         val hasSomeAttribute = shaderCode.indexOf(";") < shaderCode.indexOf("void main()")
         val fragmentShaderCode =
             if (hasSomeAttribute) {
@@ -58,7 +59,7 @@ abstract class BaseFragmentShader(private val resources: Resources) {
         program = ShaderHelper.createProgram(vertexShaderHandle, fragmentShaderHandle)
     }
 
-    abstract fun getFragmentShaderCode(resources: Resources): String
+    abstract fun getFragmentShaderFileName(): String
     abstract fun handleFragmentAttributes()
 
     fun setResolution(width: Int, height: Int) {

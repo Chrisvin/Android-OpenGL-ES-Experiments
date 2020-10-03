@@ -2,7 +2,6 @@ package com.jem.openglexperiment.opengl.fragmentshader
 
 import android.content.res.Resources
 import android.opengl.GLES20
-import com.jem.openglexperiment.getStringFromAsset
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class ColorOscillator(
@@ -13,8 +12,8 @@ class ColorOscillator(
 ) : BaseFragmentShader(resources) {
 
 
-    override fun getFragmentShaderCode(resources: Resources): String {
-        return resources.getStringFromAsset("color_oscillator.glsl")
+    override fun getFragmentShaderFileName(): String {
+        return "color_oscillator.glsl"
     }
 
     override fun handleFragmentAttributes() {

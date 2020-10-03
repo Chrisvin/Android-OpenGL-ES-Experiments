@@ -3,7 +3,6 @@ package com.jem.openglexperiment.opengl.fragmentshader
 import android.content.res.Resources
 import android.opengl.GLES20
 import android.os.SystemClock
-import com.jem.openglexperiment.getStringFromAsset
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 
 class RainDrops(val resources: Resources) : BaseFragmentShader(resources) {
@@ -11,8 +10,8 @@ class RainDrops(val resources: Resources) : BaseFragmentShader(resources) {
     private val startTime: Long = SystemClock.uptimeMillis()
     private var rainAmount: Float = 1.0f
 
-    override fun getFragmentShaderCode(resources: Resources): String {
-        return resources.getStringFromAsset("rain_drops.glsl")
+    override fun getFragmentShaderFileName(): String {
+        return "rain_drops.glsl"
     }
 
     override fun handleFragmentAttributes() {

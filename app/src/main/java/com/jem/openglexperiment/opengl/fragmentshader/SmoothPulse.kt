@@ -3,7 +3,6 @@ package com.jem.openglexperiment.opengl.fragmentshader
 import android.content.res.Resources
 import android.opengl.GLES20
 import android.os.SystemClock
-import com.jem.openglexperiment.getStringFromAsset
 import com.jem.openglexperiment.opengl.base.BaseFragmentShader
 import java.util.*
 
@@ -17,8 +16,8 @@ class SmoothPulse(val resources: Resources) : BaseFragmentShader(resources) {
 
     private val colorRandom: Random = Random()
 
-    override fun getFragmentShaderCode(resources: Resources): String {
-        return resources.getStringFromAsset("smooth_pulse.glsl")
+    override fun getFragmentShaderFileName(): String {
+        return "smooth_pulse.glsl"
     }
 
     override fun handleFragmentAttributes() {
