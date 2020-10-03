@@ -1,4 +1,4 @@
-package com.jem.openglexperiment
+package com.jem.openglexperiment.extension
 
 import android.content.res.Resources
 
