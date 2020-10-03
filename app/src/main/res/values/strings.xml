@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">OpenGLExperiment</string>
     <string name="title_activity_main">MainActivity</string>
+    <string-array name="button_copy">
+        <item>Triangle</item>
+        <item>Rotate Triangle</item>
+        <item>Four Triangles</item>
+        <item>Color Oscillator</item>
+        <item>Line Sweeper</item>
+        <item>Simple Pulse</item>
+        <item>Smooth Pulse</item>
+        <item>Silexars Creation</item>
+        <item>Trigonometric Shapes</item>
+        <item>Rain Drops</item>
+    </string-array>
 </resources>
