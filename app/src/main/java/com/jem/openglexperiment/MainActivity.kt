@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 setOnClickListener {
                     startActivity(Intent(this@MainActivity, activity))
                 }
-                text = "Experiment ${index + 1}"
+                text = resources.getStringArray(R.array.button_copy)[index]
             }
             activityList.addView(
                 button,
